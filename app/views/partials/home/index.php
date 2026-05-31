@@ -10,34 +10,6 @@ if (USER_ROLE_NAME == 'super_admin') {
     $doctors = $db->get("dokter", null, "id_dokter, nama");
 ?>
 <style>
-/* CSS media query for tablets/phones offcanvas sidebar < 992px */
-@media (max-width: 991.98px) {
-    #sidebar {
-        margin-left: -250px !important;
-        position: fixed !important;
-        top: 0 !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        z-index: 9999 !important;
-        height: 100vh !important;
-        box-shadow: 0 0 15px rgba(0,0,0,0.1) !important;
-        padding-top: 60px !important;
-    }
-    #sidebar.active {
-        margin-left: 0 !important;
-    }
-    #main-content {
-        width: 100% !important;
-        margin-left: 0 !important;
-    }
-    #main #main-content {
-        width: 100% !important;
-    }
-    #main #main-content.active {
-        width: 100% !important;
-    }
-}
-
 /* Overload Alert Animations */
 .pulse-amber {
     animation: pulse-amber-anim 2s infinite;

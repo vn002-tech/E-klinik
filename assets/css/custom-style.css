@@ -1621,21 +1621,35 @@ body{
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 991.98px) {
     #sidebar {
-        margin-left: -250px;
+        position: fixed !important;
+        top: 64px !important; /* Start below custom topbar */
+        bottom: 0 !important;
+        left: 0 !important;
+        z-index: 1025 !important; /* Below topbar (1030) */
+        height: calc(100vh - 64px) !important;
+        margin-left: -260px !important;
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15) !important;
+        transition: margin-left 0.3s ease-in-out !important;
+        overflow-y: auto !important;
     }
     #sidebar.active {
-        margin-left: 0;
-	}
-	
-	#main #main-content {
-        width: 100%;
+        margin-left: 0 !important;
     }
-	#main #main-content.active {
-        width: calc(100% - 250px);
+    #main-content {
+        width: 100% !important;
+        margin-left: 0 !important;
     }
-    
+    #main #main-content {
+        width: 100% !important;
+    }
+    #main #main-content.active {
+        width: 100% !important;
+    }
 }
 
 .navbar-brand{
@@ -1964,10 +1978,12 @@ table.table td {
     opacity: 1 !important;
 }
 
-/* 2. Dense Layout (1440px max width instead of old container) */
-.container {
-    max-width: 1440px !important;
-    width: 95% !important;
+/* 2. Dense Layout (1440px max width instead of old container) - Desktop Only */
+@media (min-width: 992px) {
+    .container {
+        max-width: 1440px !important;
+        width: 95% !important;
+    }
 }
 .page-content {
     background: var(--bg-card);
@@ -2039,4 +2055,18 @@ table.table td {
     align-items: center;
     justify-content: center;
     font-size: 16px;
+}
+
+/* --- Mobile Responsiveness Adjustments --- */
+body, #page-wrapper {
+    overflow-x: hidden;
+}
+
+@media (max-width: 575.98px) {
+    .custom-topbar .profile-name {
+        display: none !important;
+    }
+    .glass-panel {
+        padding: 1.5rem !important;
+    }
 }
