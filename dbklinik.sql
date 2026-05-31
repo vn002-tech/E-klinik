@@ -204,7 +204,7 @@ CREATE TABLE `pengguna` (
 
 -- Dumping data for table `pengguna`
 INSERT INTO `pengguna` (`id_pengguna`, `username`, `nama`, `jabatan`, `email`, `password`, `photo`, `login_session_key`, `email_status`, `password_expire_date`, `password_reset_key`, `user_role_id`) VALUES
-(1, 'Admin', 'Paidi', 'Admin Data', 'Paidi@gmail.com', '$2y$10$fE1wQ2/WnMXwDCXTpOc9KOdRNW0pZVYfPQ6Kjwoj7wnoD5miEF1hi', 'http://localhost/e-klinik/uploads/files/lhpxvyj2k5148_r.png', NULL, NULL, '2025-02-05 00:00:00', NULL, 1),
+(1, 'Admin', 'Paidi', 'Admin Data', 'vn002@gmail.com', '$2y$10$HnjpAiFtQ5CBWNhYXNz6tu/AMTsmSSuIe1uF7WNDwc.7D47hzRsTK', 'http://localhost/e-klinik/uploads/files/lhpxvyj2k5148_r.png', NULL, NULL, '2025-02-05 00:00:00', NULL, 1),
 (2, 'User', 'User', 'User Input Data', 'user@gmail.com', '$2y$10$qDYHLiuiCcf7/dYpx0/WjeK/KGeOOyn06Z5wo1TRAXluNOv3uq9yC', 'http://localhost/e-klinik/uploads/files/lsfi4r5wa3on2dk.jpg', NULL, NULL, '2025-02-05 00:00:00', NULL, 2);
 
 -- Indexes/AUTO_INCREMENT for table `pengguna`
