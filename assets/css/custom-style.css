@@ -2057,16 +2057,139 @@ table.table td {
     font-size: 16px;
 }
 
-/* --- Mobile Responsiveness Adjustments --- */
+/* --- Comprehensive Mobile Optimizations (Compact & Sleek) --- */
 body, #page-wrapper {
     overflow-x: hidden;
 }
 
-@media (max-width: 575.98px) {
-    .custom-topbar .profile-name {
-        display: none !important;
+@media (max-width: 767.98px) {
+    /* Scale down root/base typography */
+    body {
+        font-size: 13px !important;
     }
+    
+    /* Headings scaling */
+    h1, .h1 { font-size: 1.6rem !important; }
+    h2, .h2 { font-size: 1.4rem !important; }
+    h3, .h3 { font-size: 1.2rem !important; }
+    h4, .h4, .record-title { font-size: 1.15rem !important; }
+    h5, .h5 { font-size: 1.05rem !important; }
+    h6, .h6 { font-size: 0.95rem !important; }
+    
+    /* Padding & Margin reductions for layout containers */
+    .container, .container-fluid {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    .page-content {
+        padding: 12px !important;
+    }
+    
+    .card-body, .card {
+        padding: 12px !important;
+    }
+    
+    /* Reduce margins */
+    .mb-4, .my-4 {
+        margin-bottom: 0.75rem !important;
+    }
+    .mt-4, .my-4 {
+        margin-top: 0.75rem !important;
+    }
+    
+    /* Topbar adjustments */
+    .custom-topbar {
+        height: 56px !important;
+        padding: 0 10px 0 0 !important;
+    }
+    .custom-topbar .brand-link {
+        font-size: 16px !important;
+        padding-left: 10px !important;
+    }
+    .custom-topbar .brand-link img {
+        height: 24px !important;
+        margin-right: 8px !important;
+    }
+    .custom-topbar .avatar-img {
+        height: 28px !important;
+        width: 28px !important;
+    }
+    .custom-topbar .profile-name {
+        display: none !important; /* Hide on all mobile screens */
+    }
+    
+    /* Adjust sidebar top offset to match topbar */
+    #sidebar {
+        top: 56px !important;
+        height: calc(100vh - 56px) !important;
+        width: 240px !important;
+        min-width: 240px !important;
+        max-width: 240px !important;
+        margin-left: -240px !important;
+    }
+    #sidebar.active {
+        margin-left: 0 !important;
+    }
+    
+    /* Dashboard Cards optimization */
+    .dashboard-card {
+        padding: 12px 16px !important;
+        margin-bottom: 8px !important;
+    }
+    .dashboard-card .title {
+        font-size: 12px !important;
+    }
+    .dashboard-card .value {
+        font-size: 24px !important;
+        margin-top: 4px !important;
+    }
+    .dashboard-card .icon-container {
+        font-size: 20px !important;
+    }
+    
+    /* Buttons & Inputs resizing to be more compact */
+    .btn {
+        padding: 0.4rem 0.8rem !important;
+        font-size: 12px !important;
+    }
+    .btn-lg {
+        padding: 0.5rem 1rem !important;
+        font-size: 14px !important;
+    }
+    .form-control, .glass-input {
+        padding: 0.4rem 0.6rem !important;
+        font-size: 12px !important;
+        height: auto !important;
+    }
+    .input-group-text {
+        padding: 0.4rem 0.6rem !important;
+        font-size: 12px !important;
+    }
+    
+    /* Table optimizations for mobile */
+    .table th, .table td {
+        padding: 8px 8px !important;
+        font-size: 12px !important;
+    }
+    .table-responsive {
+        border-radius: 8px !important;
+        margin-bottom: 16px !important;
+    }
+    .table .btn {
+        padding: 3px 5px !important;
+        font-size: 11px !important;
+    }
+    
+    /* EWS alert alerts text sizing */
+    .alert {
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    /* Glassmorphism panels size */
     .glass-panel {
-        padding: 1.5rem !important;
+        padding: 1.25rem !important;
     }
 }

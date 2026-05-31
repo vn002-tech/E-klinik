@@ -16,7 +16,7 @@
 		?>
 				<?php 
 			Html ::  page_css('bootstrap-default.css');
-			Html ::  page_css('custom-style.css');
+			Html ::  page_css('custom-style.css?v=2.2');
 		?>
 		<?php
 			Html ::  page_js('jquery-3.3.1.min.js');
