@@ -11,8 +11,24 @@ define("ROOT_DIR_NAME", basename(ROOT));
 define("SITE_NAME", "E-Klinik");
 
 
-// Get Site Address Dynamically
-$site_addr = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] !== "off" ? "https" : "http") . "://" . $_SERVER["HTTP_HOST"] . dirname($_SERVER["SCRIPT_NAME"]);
+// Get Site Address Dynamically, handling proxy headers (like GitHub Codespaces, Ngrok, etc.)
+$protocol = 'http';
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+	$protocol = 'https';
+} elseif (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+	$protocol = 'https';
+}
+
+$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
+	$host_parts = explode(',', $_SERVER['HTTP_X_FORWARDED_HOST']);
+	$host = trim($host_parts[0]);
+}
+
+$script_name = isset($_SERVER['SCRIPT_NAME']) ? dirname($_SERVER['SCRIPT_NAME']) : '';
+$script_name = rtrim(str_replace('\\', '/', $script_name), '/');
+
+$site_addr = $protocol . "://" . $host . $script_name;
 
 //Must end with /
 $site_addr = rtrim($site_addr, "/\\") . "/";
