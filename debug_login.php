@@ -6,29 +6,28 @@ require('app/models/PDODb.php');
 try {
     $db = new PDODb(DB_TYPE, DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT, DB_CHARSET);
     
-    // Check if the Admin user exists
-    $db->where("username", "Admin");
+    // Exact logic from IndexController.php
+    $username = 'admin'; // Testing 'admin'
+    $username_sanitized = filter_var($username, FILTER_SANITIZE_STRING);
+    
+    $db->where("username", $username_sanitized)->orWhere("email", $username_sanitized);
     $user = $db->getOne("pengguna");
     
-    if (!$user) {
-        echo "User 'Admin' not found in database!\n";
-        
-        // Let's get all users
-        $all_users = $db->get("pengguna");
-        echo "Total users in database: " . count($all_users) . "\n";
-        if ($all_users) {
-            foreach ($all_users as $u) {
-                echo "Username: " . $u['username'] . ", Email: " . $u['email'] . "\n";
-            }
-        }
+    if (empty($user)) {
+        echo "User matching '$username' NOT found via exact IndexController query logic!\n";
+        echo "Sanitized username: '$username_sanitized'\n";
     } else {
-        echo "User 'Admin' found!\n";
+        echo "User matching '$username' FOUND!\n";
+        echo "Username in DB: " . $user['username'] . "\n";
         echo "Email: " . $user['email'] . "\n";
-        echo "Hash in DB: " . $user['password'] . "\n";
+        echo "Password Hash in DB: " . $user['password'] . "\n";
         
-        $test_pw = 'admin';
-        $verify = password_verify($test_pw, $user['password']);
-        echo "Testing password_verify('$test_pw', hash): " . ($verify ? "SUCCESS (true)" : "FAILED (false)") . "\n";
+        $password_text = 'admin'; // testing password 'admin'
+        if (password_verify($password_text, $user['password'])) {
+            echo "Password verify SUCCESS!\n";
+        } else {
+            echo "Password verify FAILED!\n";
+        }
     }
 } catch (Exception $e) {
     echo "Exception: " . $e->getMessage() . "\n";
