@@ -96,8 +96,14 @@ class SharedController extends BaseController{
 		$db = $this->GetModel();
 		$sqltext = "SELECT COUNT(*) AS num FROM rekam_medis";
 		$queryparams = null;
+		if (USER_ROLE_NAME == 'pasien') {
+			$sqltext = "SELECT COUNT(*) AS num FROM rekam_medis WHERE id_pasien = :id_pasien";
+			$queryparams = array('id_pasien' => USER_PASIEN_ID);
+		} elseif (USER_ROLE_NAME == 'dokter') {
+			$sqltext = "SELECT COUNT(*) AS num FROM rekam_medis WHERE id_dokter = :id_dokter";
+			$queryparams = array('id_dokter' => USER_DOKTER_ID);
+		}
 		$val = $db->rawQueryValue($sqltext, $queryparams);
-		
 		if(is_array($val)){
 			return $val[0];
 		}
@@ -112,8 +118,11 @@ class SharedController extends BaseController{
 		$db = $this->GetModel();
 		$sqltext = "SELECT COUNT(*) AS num FROM dokter";
 		$queryparams = null;
+		if (USER_ROLE_NAME == 'pasien') {
+			$sqltext = "SELECT COUNT(DISTINCT id_dokter) AS num FROM rekam_medis WHERE id_pasien = :id_pasien";
+			$queryparams = array('id_pasien' => USER_PASIEN_ID);
+		}
 		$val = $db->rawQueryValue($sqltext, $queryparams);
-		
 		if(is_array($val)){
 			return $val[0];
 		}
@@ -128,8 +137,13 @@ class SharedController extends BaseController{
 		$db = $this->GetModel();
 		$sqltext = "SELECT COUNT(*) AS num FROM pasien";
 		$queryparams = null;
+		if (USER_ROLE_NAME == 'pasien') {
+			return 1;
+		} elseif (USER_ROLE_NAME == 'dokter') {
+			$sqltext = "SELECT COUNT(DISTINCT id_pasien) AS num FROM rekam_medis WHERE id_dokter = :id_dokter";
+			$queryparams = array('id_dokter' => USER_DOKTER_ID);
+		}
 		$val = $db->rawQueryValue($sqltext, $queryparams);
-		
 		if(is_array($val)){
 			return $val[0];
 		}
@@ -144,8 +158,10 @@ class SharedController extends BaseController{
 		$db = $this->GetModel();
 		$sqltext = "SELECT COUNT(*) AS num FROM pengguna";
 		$queryparams = null;
+		if (USER_ROLE_NAME == 'pasien' || USER_ROLE_NAME == 'dokter') {
+			return 0;
+		}
 		$val = $db->rawQueryValue($sqltext, $queryparams);
-		
 		if(is_array($val)){
 			return $val[0];
 		}

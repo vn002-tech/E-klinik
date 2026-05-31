@@ -31,7 +31,7 @@ $redirect_to = $this->redirect_to;
             <div class="row ">
                 <div class="col-md-7 comp-grid">
                     <?php $this :: display_page_errors(); ?>
-                    <div  class="bg-light p-3 animated fadeIn page-content">
+                    <div  class="bg-light p-3   page-content">
                         <form novalidate  id="" role="form" enctype="multipart/form-data"  class="form page-form form-horizontal needs-validation" action="<?php print_link("roles/edit/$page_id/?csrf_token=$csrf_token"); ?>" method="post">
                             <div>
                                 <div class="form-group ">

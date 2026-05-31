@@ -116,6 +116,20 @@ class Router
 	 */
 	function run($url)
 	{
+		$clean_url = ltrim($url, "/");
+		if ($clean_url == "api/admin/command-center/metrics") {
+			$url = "queue/metrics";
+		} elseif ($clean_url == "api/admin/command-center/reassign-batch") {
+			$url = "queue/reassign_queue";
+		} elseif ($clean_url == "api/admin/settings/backup/create") {
+			$url = "settings/create_backup";
+		} elseif ($clean_url == "api/admin/settings/thresholds/save") {
+			$url = "settings/save_thresholds";
+		} elseif (strpos($clean_url, "api/admin/settings/backup/download/") === 0) {
+			$url = str_replace("api/admin/settings/backup/download/", "settings/download_backup/", $clean_url);
+		} elseif (strpos($clean_url, "api/admin/settings/backup/delete/") === 0) {
+			$url = str_replace("api/admin/settings/backup/delete/", "settings/delete_backup/", $clean_url);
+		}
 		self::$page_url = $url;
 		$url_segment = array_map('urldecode', explode("/", rtrim($url, "/")));
 		$page = strtolower(!empty($url_segment[0]) ? $url_segment[0] : DEFAULT_PAGE);

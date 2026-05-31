@@ -41,7 +41,7 @@ $show_export_btn = $this->show_export_btn;
             <div class="row ">
                 <div class="col-md-12 comp-grid">
                     <?php $this :: display_page_errors(); ?>
-                    <div  class="card animated fadeIn page-content">
+                    <div  class="card   page-content">
                         <?php
                         $counter = 0;
                         if(!empty($data)){
@@ -126,12 +126,12 @@ $show_export_btn = $this->show_export_btn;
                                                 </div>
                                                 <?php if($can_edit){ ?>
                                                 <a class="btn btn-sm btn-info"  href="<?php print_link("obat/edit/$rec_id"); ?>">
-                                                    <i class="fa fa-edit"></i> Edit
+                                                    <i class="fa fa-edit"></i>
                                                 </a>
                                                 <?php } ?>
                                                 <?php if($can_delete){ ?>
                                                 <a class="btn btn-sm btn-danger record-delete-btn mx-1"  href="<?php print_link("obat/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
-                                                    <i class="fa fa-times"></i> Delete
+                                                    <i class="fa fa-trash-o"></i>
                                                 </a>
                                                 <?php } ?>
                                             </div>

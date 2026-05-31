@@ -164,7 +164,7 @@ class BaseController{
 			"extensions" => ".jpg,.png,.gif,.jpeg",
 			"limit" => "1",
 			"filesize" => "3",
-			"returnfullpath" => true,
+			"returnfullpath" => false,
 			"filenameprefix" => "",
 			"uploadDir" => "uploads/files/"
 		);

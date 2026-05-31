@@ -28,7 +28,7 @@ $redirect_to = $this->redirect_to;
             <div class="row ">
                 <div class="col-md-7 comp-grid">
                     <?php $this :: display_page_errors(); ?>
-                    <div  class="bg-light p-3 animated fadeIn page-content">
+                    <div  class="bg-light p-3   page-content">
                         <form id="rekam_medis-add-form" role="form" novalidate enctype="multipart/form-data" class="form page-form form-horizontal needs-validation" action="<?php print_link("rekam_medis/add?csrf_token=$csrf_token") ?>" method="post">
                             <div>
                                 <div class="form-group ">
@@ -80,7 +80,7 @@ $redirect_to = $this->redirect_to;
                                                 <div class="col-sm-8">
                                                     <div class="">
                                                         <textarea placeholder="Enter Keluhan" id="ctrl-keluhan"  required="" rows="5" name="keluhan" class=" form-control"><?php  echo $this->set_field_value('keluhan',""); ?></textarea>
-                                                        <!--<div class="invalid-feedback animated bounceIn text-center">Please enter text</div>-->
+                                                        <!--<div class="invalid-feedback   text-center">Please enter text</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,7 +119,7 @@ $redirect_to = $this->redirect_to;
                                                     <div class="col-sm-8">
                                                         <div class="">
                                                             <textarea placeholder="Enter Diagnosa" id="ctrl-diagnosa"  required="" rows="5" name="diagnosa" class=" form-control"><?php  echo $this->set_field_value('diagnosa',""); ?></textarea>
-                                                            <!--<div class="invalid-feedback animated bounceIn text-center">Please enter text</div>-->
+                                                            <!--<div class="invalid-feedback   text-center">Please enter text</div>-->
                                                         </div>
                                                     </div>
                                                 </div>

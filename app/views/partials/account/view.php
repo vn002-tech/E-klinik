@@ -41,7 +41,7 @@ $show_export_btn = $this->show_export_btn;
             <div class="row ">
                 <div class="col-md-12 comp-grid">
                     <?php $this :: display_page_errors(); ?>
-                    <div  class="card animated fadeIn page-content">
+                    <div  class="card   page-content">
                         <?php
                         $counter = 0;
                         if(!empty($data)){
@@ -50,12 +50,17 @@ $show_export_btn = $this->show_export_btn;
                         ?>
                         <div class="bg-primary m-2 mb-4">
                             <div class="profile">
-                                <div class="avatar">
+                                <div class="avatar" style="position: relative; display: inline-block;">
                                     <?php 
                                     if(!empty(USER_PHOTO)){
-                                    Html::page_img(USER_PHOTO, 100, 100); 
+                                        Html::page_img(USER_PHOTO, 100, 100); 
+                                    } else {
+                                        Html::page_img("assets/images/avatar.png", 100, 100);
                                     }
                                     ?>
+                                    <a href="javascript:void(0);" onclick="$('.nav-pills a[href=\'#AccountPageEdit\']').tab('show');" class="btn btn-sm btn-light rounded-circle" style="position: absolute; bottom: 0; right: 0; width: 32px; height: 32px; padding: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Edit Profil">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
                                 </div>
                                 <h1 class="title mt-4"><?php echo $data['username']; ?></h1>
                             </div>
@@ -71,7 +76,7 @@ $show_export_btn = $this->show_export_btn;
                                         </li>
                                         <li class="nav-item">
                                             <a data-toggle="tab" href="#AccountPageEdit" class="nav-link">
-                                                <i class="fa fa-edit"></i> Edit Account
+                                                <i class="fa fa-edit"></i> Account
                                             </a>
                                         </li>
                                         <li class="nav-item">

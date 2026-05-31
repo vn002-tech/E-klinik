@@ -10,11 +10,6 @@ class HomeController extends SecureController{
      * @return View
      */
 	function index(){
-		if(strtolower(USER_ROLE) == 'administrator'){
-			$this->render_view("home/administrator.php" , null , "main_layout.php");
-		}
-		else{
-			$this->render_view("home/index.php" , null , "main_layout.php");
-		}
+		$this->render_view("home/index.php" , null , "main_layout.php");
 	}
 }

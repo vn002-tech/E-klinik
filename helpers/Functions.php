@@ -147,6 +147,9 @@ function is_post_request()
 
 function render_json($data, $status = 'ok')
 {
+	if (ob_get_level() > 0) {
+		ob_clean();
+	}
 	header('Content-type: application/json; charset=utf-8');
 	echo json_encode($data);
 	exit;
@@ -154,6 +157,9 @@ function render_json($data, $status = 'ok')
 
 function render_error($response = null, $code = 501)
 {
+	if (ob_get_level() > 0) {
+		ob_clean();
+	}
 	if (is_array($response)) {
 		$response = json_encode($response);
 	}
@@ -521,9 +527,11 @@ function human_datetime($date)
  * returns true if $needle is a substring of $haystack
  * @return  bool
  */
-function str_contains($needle, $haystack)
-{
-	return strpos($haystack, $needle) !== false;
+if (!function_exists('str_contains')) {
+	function str_contains($needle, $haystack)
+	{
+		return strpos($haystack, $needle) !== false;
+	}
 }
 /**
  * Approximate to nearest decimal points

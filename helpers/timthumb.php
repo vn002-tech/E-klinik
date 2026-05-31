@@ -1,4 +1,8 @@
 <?php
+// Disable all error output in timthumb to prevent corrupted images
+ini_set('display_errors', '0');
+error_reporting(0);
+
 /**
  * TimThumb by Ben Gillbanks and Mark Maunder
  * Based on work done by Tim McDaniels and Darren Hoyt
@@ -1095,7 +1099,8 @@ class timthumb {
 	protected function securityChecks(){
 	}
 	protected function param($property, $default = ''){
-		$get =  filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+		// Avoid FILTER_SANITIZE_STRING deprecation warning in PHP 8.1+
+		$get = array_map(function($v) { return is_array($v) ? $v : strip_tags($v); }, $_GET);
 		if (isset ($get[$property])) {
 			return $get[$property];
 		} else {

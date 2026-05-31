@@ -31,7 +31,7 @@ $redirect_to = $this->redirect_to;
             <div class="row ">
                 <div class="col-md-7 comp-grid">
                     <?php $this :: display_page_errors(); ?>
-                    <div  class="bg-light p-3 animated fadeIn page-content">
+                    <div  class="bg-light p-3   page-content">
                         <form novalidate  id="" role="form" enctype="multipart/form-data"  class="form page-form form-horizontal needs-validation" action="<?php print_link("dokter/edit/$page_id/?csrf_token=$csrf_token"); ?>" method="post">
                             <div>
                                 <div class="form-group ">
@@ -79,8 +79,8 @@ $redirect_to = $this->redirect_to;
                                                         <div class="">
                                                             <div class="dropzone required" input="#ctrl-photo" fieldname="photo"    data-multiple="false" dropmsg="Choose files or drag and drop files to upload"    btntext="Browse" extensions=".jpg,.png,.gif,.jpeg" filesize="3" maximum="1">
                                                                 <input name="photo" id="ctrl-photo" required="" class="dropzone-input form-control" value="<?php  echo $data['photo']; ?>" type="text"  />
-                                                                    <!--<div class="invalid-feedback animated bounceIn text-center">Please a choose file</div>-->
-                                                                    <div class="dz-file-limit animated bounceIn text-center text-danger"></div>
+                                                                    <!--<div class="invalid-feedback   text-center">Please a choose file</div>-->
+                                                                    <div class="dz-file-limit   text-center text-danger"></div>
                                                                 </div>
                                                             </div>
                                                             <?php Html :: uploaded_files_list($data['photo'], '#ctrl-photo'); ?>

@@ -15,7 +15,7 @@
 			Html ::  page_css('animate.css');
 		?>
 				<?php 
-			Html ::  page_css('bootstrap-theme-superhero.css');
+			Html ::  page_css('bootstrap-default.css');
 			Html ::  page_css('custom-style.css');
 		?>
 		<?php
@@ -28,39 +28,11 @@
 			}
 		</style>
 	</head>
-	<body style="padding-top:50px;">
-		<nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
-			<a class="navbar-brand" href="<?php print_link('') ?>">
-				<img class="img-responsive" src="<?php print_link(SITE_LOGO); ?>" /> 
-				<?php echo SITE_NAME ?>
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-item active">
-						<a class="nav-link" href="<?php print_link(HOME_PAGE) ?>">Home</a>
-					</li>
-					<li class="nav-item active">
-						<a class="nav-link" href="<?php print_link('info/about') ?>">About us</a>
-					</li>
-					<li class="nav-item active">
-						<a class="nav-link" href="<?php print_link('info/help') ?>">Help and FAQ</a>
-					</li>
-					<li class="nav-item active">
-						<a class="nav-link" href="<?php print_link('info/contact') ?>">Contact us</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
-		<div id="main-content" class="mt-4">
+	<body style="background: var(--bg-gradient); min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+		<div id="main-content" class="w-100">
 			<div id="page-content">
 				<?php $this->render_body();?>
 			</div>
-			<?php 
-				$this->render_view('appfooter.php'); 
-			?>
 		</div>
 		<?php 
 			Html ::  page_js('popper.js');

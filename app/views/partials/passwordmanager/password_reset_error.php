@@ -1,7 +1,7 @@
 <div class="container">
 	<h3>Password Reset </h3>
 	
-	<div class="card card-body mt-4 animated bounce">
+	<div class="card card-body mt-4  bounce">
 		<h3 class="text-danger bold">Your password reset was not completed</h3>
 		<div class="text-muted">Password reset key failure</div>
 		<hr />

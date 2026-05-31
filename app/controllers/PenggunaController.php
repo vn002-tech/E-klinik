@@ -18,12 +18,14 @@ class PenggunaController extends SecureController{
 		$request = $this->request;
 		$db = $this->GetModel();
 		$tablename = $this->tablename;
-		$fields = array("id_pengguna", 
-			"username", 
-			"nama", 
-			"email", 
-			"photo", 
-			"user_role_id");
+		$db->join("roles", "pengguna.user_role_id = roles.role_id", "LEFT");
+		$fields = array("pengguna.id_pengguna", 
+			"pengguna.username", 
+			"pengguna.nama", 
+			"pengguna.email", 
+			"pengguna.photo", 
+			"pengguna.user_role_id",
+			"roles.role_name AS role_name");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
 		//search table record
 		if(!empty($request->search)){
@@ -90,12 +92,14 @@ class PenggunaController extends SecureController{
 		$db = $this->GetModel();
 		$rec_id = $this->rec_id = urldecode($rec_id);
 		$tablename = $this->tablename;
-		$fields = array("id_pengguna", 
-			"username", 
-			"nama", 
-			"jabatan", 
-			"email", 
-			"user_role_id");
+		$db->join("roles", "pengguna.user_role_id = roles.role_id", "LEFT");
+		$fields = array("pengguna.id_pengguna", 
+			"pengguna.username", 
+			"pengguna.nama", 
+			"pengguna.jabatan", 
+			"pengguna.email", 
+			"pengguna.user_role_id",
+			"roles.role_name AS role_name");
 		if($value){
 			$db->where($rec_id, urldecode($value)); //select record based on field name
 		}

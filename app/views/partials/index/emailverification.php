@@ -8,7 +8,7 @@
 		if($status==true){
 			if(!empty($_GET['resend'])){
 				?>
-				<h4 class="text-info bold animated bounce"><i class="fa fa-envelope"></i> Email verification has been resent</h4>
+				<h4 class="text-info bold  bounce"><i class="fa fa-envelope"></i> Email verification has been resent</h4>
 				<?php
 			}
 			else{

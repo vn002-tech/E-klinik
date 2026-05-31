@@ -110,11 +110,11 @@ $show_pagination = $this->show_pagination;
                 <div class="row ">
                     <div class="col-md-12 comp-grid">
                         <?php $this :: display_page_errors(); ?>
-                        <div  class=" animated fadeIn page-content">
+                        <div  class="   page-content">
                             <div id="rekam_medis-list-records">
                                 <div id="page-report-body" class="table-responsive">
                                     <table class="table  table-striped table-sm text-left">
-                                        <thead class="table-header bg-light">
+                                        <thead class="table-header">
                                             <tr>
                                                 <?php if($can_delete){ ?>
                                                 <th class="td-checkbox">
@@ -268,19 +268,18 @@ $show_pagination = $this->show_pagination;
                                                     </td>
                                                     <th class="td-btn">
                                                         <?php if($can_view){ ?>
-                                                        <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("rekam_medis/view/$rec_id"); ?>">
-                                                            <i class="fa fa-eye"></i> View
+                                                        <a class="btn btn-sm btn-outline-success has-tooltip" title="View Record" href="<?php print_link("rekam_medis/view/$rec_id"); ?>">
+                                                            <i class="fa fa-eye"></i>
                                                         </a>
                                                         <?php } ?>
                                                         <?php if($can_edit){ ?>
-                                                        <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("rekam_medis/edit/$rec_id"); ?>">
-                                                            <i class="fa fa-edit"></i> Edit
+                                                        <a class="btn btn-sm btn-outline-info has-tooltip" title="Edit This Record" href="<?php print_link("rekam_medis/edit/$rec_id"); ?>">
+                                                            <i class="fa fa-edit"></i>
                                                         </a>
                                                         <?php } ?>
                                                         <?php if($can_delete){ ?>
-                                                        <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("rekam_medis/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
-                                                            <i class="fa fa-times"></i>
-                                                            Delete
+                                                        <a class="btn btn-sm btn-outline-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("rekam_medis/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
+                                                            <i class="fa fa-trash-o"></i>
                                                         </a>
                                                         <?php } ?>
                                                     </th>
@@ -298,7 +297,7 @@ $show_pagination = $this->show_pagination;
                                         <?php 
                                         if(empty($records)){
                                         ?>
-                                        <h4 class="bg-light text-center border-top text-muted animated bounce  p-3">
+                                        <h4 class="bg-light text-center border-top text-muted  bounce  p-3">
                                             <i class="fa fa-ban"></i> No record found
                                         </h4>
                                         <?php
@@ -314,7 +313,7 @@ $show_pagination = $this->show_pagination;
                                                 <div class="p-3 d-flex justify-content-between">    
                                                     <?php if($can_delete){ ?>
                                                     <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("rekam_medis/delete/{sel_ids}/?csrf_token=$csrf_token&redirect=$current_page"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
-                                                        <i class="fa fa-times"></i> Delete Selected
+                                                        <i class="fa fa-trash-o"></i> Selected
                                                     </button>
                                                     <?php } ?>
                                                     <div class="dropup export-btn-holder mx-1">

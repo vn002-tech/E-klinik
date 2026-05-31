@@ -4,7 +4,7 @@
 			<div class="card card-body">
 				<h2>Password Reset </h2>
 				<hr />	
-				<h4 class="animated bounce text-success">
+				<h4 class=" bounce text-success">
 					<i class="fa fa-check-circle"></i> Your password has been changed successfully
 				</h4>
 				<hr />

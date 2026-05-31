@@ -23,7 +23,8 @@ class PasienController extends SecureController{
 			"jk", 
 			"no_hp", 
 			"alamat", 
-			"photo");
+			"photo", 
+			"keluhan");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
 		//search table record
 		if(!empty($request->search)){
@@ -93,7 +94,8 @@ class PasienController extends SecureController{
 			"jk", 
 			"no_hp", 
 			"alamat", 
-			"photo");
+			"photo", 
+			"keluhan");
 		if($value){
 			$db->where($rec_id, urldecode($value)); //select record based on field name
 		}
@@ -130,7 +132,7 @@ class PasienController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("nama_pasien","jk","no_hp","alamat","photo");
+			$fields = $this->fields = array("nama_pasien","jk","no_hp","alamat","photo","keluhan");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'nama_pasien' => 'required',
@@ -138,6 +140,7 @@ class PasienController extends SecureController{
 				'no_hp' => 'required',
 				'alamat' => 'required',
 				'photo' => 'required',
+				'keluhan' => 'required',
 			);
 			$this->sanitize_array = array(
 				'nama_pasien' => 'sanitize_string',
@@ -145,10 +148,28 @@ class PasienController extends SecureController{
 				'no_hp' => 'sanitize_string',
 				'alamat' => 'sanitize_string',
 				'photo' => 'sanitize_string',
+				'keluhan' => 'sanitize_string',
 			);
 			$this->filter_vals = true; //set whether to remove empty fields
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
+				$tahun = date("y");
+				$prefix = "0000" . $tahun;
+				
+				$db->where("id_pasien", $prefix . "%", "LIKE");
+				$db->orderBy("id_pasien", "DESC");
+				$last_pasien = $db->getOne($tablename, "id_pasien");
+				
+				if ($last_pasien) {
+					$last_seq = intval(substr($last_pasien['id_pasien'], -3));
+					$new_seq = $last_seq + 1;
+				} else {
+					$new_seq = 1;
+				}
+				
+				$new_id = $prefix . sprintf("%03d", $new_seq);
+				$modeldata['id_pasien'] = $new_id;
+
 				$rec_id = $this->rec_id = $db->insert($tablename, $modeldata);
 				if($rec_id){
 					$this->set_flash_msg("Record added successfully", "success");
@@ -174,7 +195,7 @@ class PasienController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id_pasien","nama_pasien","jk","no_hp","alamat","photo");
+		$fields = $this->fields = array("id_pasien","nama_pasien","jk","no_hp","alamat","photo","keluhan");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
@@ -183,6 +204,7 @@ class PasienController extends SecureController{
 				'no_hp' => 'required',
 				'alamat' => 'required',
 				'photo' => 'required',
+				'keluhan' => 'required',
 			);
 			$this->sanitize_array = array(
 				'nama_pasien' => 'sanitize_string',
@@ -190,6 +212,7 @@ class PasienController extends SecureController{
 				'no_hp' => 'sanitize_string',
 				'alamat' => 'sanitize_string',
 				'photo' => 'sanitize_string',
+				'keluhan' => 'sanitize_string',
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
@@ -233,7 +256,7 @@ class PasienController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id_pasien","nama_pasien","jk","no_hp","alamat","photo");
+		$fields = $this->fields = array("id_pasien","nama_pasien","jk","no_hp","alamat","photo","keluhan");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -247,6 +270,7 @@ class PasienController extends SecureController{
 				'no_hp' => 'required',
 				'alamat' => 'required',
 				'photo' => 'required',
+				'keluhan' => 'required',
 			);
 			$this->sanitize_array = array(
 				'nama_pasien' => 'sanitize_string',
@@ -254,6 +278,7 @@ class PasienController extends SecureController{
 				'no_hp' => 'sanitize_string',
 				'alamat' => 'sanitize_string',
 				'photo' => 'sanitize_string',
+				'keluhan' => 'sanitize_string',
 			);
 			$this->filter_rules = true; //filter validation rules by excluding fields not in the formdata
 			$modeldata = $this->modeldata = $this->validate_form($postdata);

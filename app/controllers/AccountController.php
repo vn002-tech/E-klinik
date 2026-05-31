@@ -22,6 +22,7 @@ class AccountController extends SecureController{
 			"nama", 
 			"jabatan", 
 			"email", 
+			"photo", 
 			"user_role_id");
 		$user = $db->getOne($tablename , $fields);
 		if(!empty($user)){
@@ -121,5 +122,84 @@ class AccountController extends SecureController{
 			}
 		}
 		return $this->render_view("account/change_email.php");
+	}
+	/**
+     * Account Settings Action
+     * @return BaseView
+     */
+	function settings($formdata = null){
+		$db = $this->GetModel();
+		$user_id = USER_ID;
+		if ($formdata) {
+			$postdata = $this->format_request_data($formdata);
+			$notif_email = isset($postdata['notif_email']) ? 1 : 0;
+			$notif_whatsapp = isset($postdata['notif_whatsapp']) ? 1 : 0;
+			$two_factor_enabled = isset($postdata['two_factor_enabled']) ? 1 : 0;
+			$update_data = array(
+				'notif_email' => $notif_email,
+				'notif_whatsapp' => $notif_whatsapp,
+				'two_factor_enabled' => $two_factor_enabled
+			);
+			if (!empty($_FILES['verification_document']['name'])) {
+				$uploader = new Uploader;
+				$upload_settings = array(
+					"title" => "{{random}}",
+					"extensions" => ".jpg,.png,.jpeg,.pdf",
+					"limit" => "1",
+					"filesize" => "3",
+					"returnfullpath" => false,
+					"filenameprefix" => "",
+					"uploadDir" => "uploads/files/"
+				);
+				$upload_data = $uploader->upload($_FILES['verification_document'], $upload_settings);
+				if (!$upload_data['hasErrors'] && $upload_data['isComplete']) {
+					$update_data['verification_document'] = $upload_data['data']['files'][0];
+					$update_data['is_verified'] = 'pending';
+				}
+			}
+			if (!empty($postdata['current_password']) && !empty($postdata['new_password'])) {
+				$db->where('id_pengguna', $user_id);
+				$u = $db->getOne('pengguna', 'password');
+				if (password_verify($postdata['current_password'], $u['password'])) {
+					if ($postdata['new_password'] === $postdata['confirm_password']) {
+						$new_hash = password_hash($postdata['new_password'], PASSWORD_DEFAULT);
+						$db->where('id_pengguna', $user_id);
+						$db->update('pengguna', array('password' => $new_hash));
+						$this->set_flash_msg("Password dan pengaturan berhasil diperbarui", "success");
+					} else {
+						$this->set_flash_msg("Konfirmasi password baru tidak cocok", "danger");
+						return $this->redirect("account/settings");
+					}
+				} else {
+					$this->set_flash_msg("Password lama Anda salah", "danger");
+					return $this->redirect("account/settings");
+				}
+			}
+			$db->where('user_id', $user_id);
+			$db->update('user_settings', $update_data);
+			$this->set_flash_msg("Pengaturan akun berhasil disimpan", "success");
+			return $this->redirect("account/settings");
+		}
+		$db->where('user_id', $user_id);
+		$settings = $db->getOne('user_settings');
+		if (!$settings) {
+			$db->insert('user_settings', array(
+				'user_id' => $user_id,
+				'notif_email' => 1,
+				'notif_whatsapp' => 1,
+				'two_factor_enabled' => 0,
+				'is_verified' => 'unverified'
+			));
+			$db->where('user_id', $user_id);
+			$settings = $db->getOne('user_settings');
+		}
+		$db->where('id_pengguna', $user_id);
+		$user = $db->getOne('pengguna', array('id_pengguna', 'username', 'nama', 'email', 'photo', 'user_role_id'));
+		$view_data = array(
+			'user' => $user,
+			'settings' => $settings
+		);
+		$this->view->page_title = "Pengaturan Akun";
+		return $this->render_view("account/settings.php", $view_data);
 	}
 }

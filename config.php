@@ -84,13 +84,13 @@ define("DEFAULT_EMAIL", "");
 define("DEFAULT_EMAIL_ACCOUNT_NAME", "");
 
 // Database Configuration Settings
-define("DB_HOST", "localhost");
-define("DB_USERNAME", "root");
-define("DB_PASSWORD", "");
-define("DB_NAME", "dbklinik");
-define("DB_TYPE", "mysql");
-define("DB_PORT", "");
-define("DB_CHARSET", "utf8");
+define("DB_HOST", getenv("DB_HOST") ?: "localhost");
+define("DB_USERNAME", getenv("DB_USERNAME") ?: "root");
+define("DB_PASSWORD", getenv("DB_PASSWORD") !== false ? getenv("DB_PASSWORD") : "");
+define("DB_NAME", getenv("DB_NAME") ?: "dbklinik");
+define("DB_TYPE", getenv("DB_TYPE") ?: "mysql");
+define("DB_PORT", getenv("DB_PORT") ?: "");
+define("DB_CHARSET", getenv("DB_CHARSET") ?: "utf8");
 
 define("MAX_RECORD_COUNT", 20); //Default Max Records to Retrieve  per Page
 define("ORDER_TYPE", "DESC");  //Default Order Type
@@ -101,3 +101,6 @@ define('USER_NAME',(isset($_SESSION[APP_ID.'user_data']) ? $_SESSION[APP_ID.'use
 define('USER_EMAIL',(isset($_SESSION[APP_ID.'user_data']) ? $_SESSION[APP_ID.'user_data']['email'] : null ));
 define('USER_PHOTO',(isset($_SESSION[APP_ID.'user_data']) ? $_SESSION[APP_ID.'user_data']['photo'] : null ));
 define('USER_ROLE',(isset($_SESSION[APP_ID.'user_data']) ? $_SESSION[APP_ID.'user_data']['user_role_id'] : null ));
+define('USER_ROLE_NAME',(isset($_SESSION[APP_ID.'user_data']) ? ($_SESSION[APP_ID.'user_data']['user_role_id'] == 1 ? 'super_admin' : ($_SESSION[APP_ID.'user_data']['user_role_id'] == 2 ? 'pasien' : 'dokter')) : null ));
+define('USER_PASIEN_ID', $_SESSION[APP_ID.'user_data']['pasien_id'] ?? null);
+define('USER_DOKTER_ID', $_SESSION[APP_ID.'user_data']['dokter_id'] ?? null);

@@ -109,26 +109,26 @@ class IndexController extends BaseController{
 			if($cpassword != $password){
 				$this->view->page_error[] = "Your password confirmation is not consistent";
 			}
-			$this->rules_array = array(
-				'username' => 'required',
-				'nama' => 'required',
-				'jabatan' => 'required',
-				'email' => 'required|valid_email',
-				'password' => 'required',
-				'photo' => 'required',
-				'user_role_id' => 'required',
-			);
-			$this->sanitize_array = array(
-				'username' => 'sanitize_string',
-				'nama' => 'sanitize_string',
-				'jabatan' => 'sanitize_string',
-				'email' => 'sanitize_string',
-				'photo' => 'sanitize_string',
-				'user_role_id' => 'sanitize_string',
-			);
-			$this->filter_vals = true; //set whether to remove empty fields
-			$modeldata = $this->modeldata = $this->validate_form($postdata);
-			$password_text = $modeldata['password'];
+            $this->rules_array = array(
+                'username' => 'required',
+                'nama' => 'required',
+                'email' => 'required|valid_email',
+                'password' => 'required',
+            );
+            $this->sanitize_array = array(
+                'username' => 'sanitize_string',
+                'nama' => 'sanitize_string',
+                'email' => 'sanitize_string',
+            );
+            $this->filter_vals = true; //set whether to remove empty fields
+            $modeldata = $this->modeldata = $this->validate_form($postdata);
+            
+            // Set Default Values for User Registration (Pasien)
+            $modeldata['jabatan'] = 'Pasien';
+            $modeldata['user_role_id'] = 2; // Role ID 2 = User/Pasien
+            $modeldata['photo'] = '';
+            
+            $password_text = $modeldata['password'];
 			//update modeldata with the password hash
 			$modeldata['password'] = $this->modeldata['password'] = password_hash($password_text , PASSWORD_DEFAULT);
 			//Check if Duplicate Record Already Exit In The Database

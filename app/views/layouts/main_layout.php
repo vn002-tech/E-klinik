@@ -19,12 +19,14 @@
 			Html ::  page_meta('keyword',META_KEYWORDS); 
 			Html ::  page_meta('description',META_DESCRIPTION); 
 			Html ::  page_meta('viewport',META_VIEWPORT);
+			echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
+			echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
+			echo '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">';
 			Html ::  page_css('font-awesome.min.css');
-			Html ::  page_css('animate.css');
 			Html ::  page_css('blueimp-gallery.css');
 		?>
 				<?php 
-			Html ::  page_css('bootstrap-theme-superhero.css');
+			Html ::  page_css('bootstrap-default.css');
 			Html ::  page_css('custom-style.css');
 		?>
 		<?php
@@ -48,7 +50,9 @@
 				<div class="progress-bar"></div>
 			</div>
 			<?php 
-				$this->render_view('appheader.php'); 
+				if(user_login_status() == true){
+					$this->render_view('appheader.php'); 
+				}
 			?>
 			<div id="main-content">
 				<!-- Page Main Content Start -->
@@ -58,7 +62,9 @@
 				<!-- Page Main Content [End] -->
 				<!-- Page Footer Start -->
 					<?php 
-						$this->render_view('appfooter.php'); 
+						if(user_login_status() == true){
+							$this->render_view('appfooter.php'); 
+						}
 					?>
 				<!-- Page Footer Ends -->
 				<div class="flash-msg-container"><?php show_flash_msg(); ?></div>
