@@ -1,6 +1,6 @@
 <?php
 require('config.php');
-require('libs/PDODb.php');
+require('app/models/PDODb.php');
 
 try {
     $db = new PDODb(DB_TYPE, DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT, DB_CHARSET);
