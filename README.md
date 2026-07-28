@@ -35,3 +35,6 @@ Sistem ini dibangun menggunakan arsitektur MVC (Model-View-Controller) modern de
 <p align="center">
   <i>Dikembangkan untuk efisiensi pelayanan kesehatan masa depan.</i>
 </p>
+#### Login to Admin
+usernmae : admin
+pwd      : admin
