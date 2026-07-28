@@ -6,10 +6,10 @@
 
 ---
 
-## 🎯 Tujuan Utama (Purpose)
+## Tujuan Utama (Purpose)
 **E-Klinik** dibangun dengan tujuan untuk mendigitalisasi dan menyederhanakan seluruh proses operasional di dalam sebuah klinik medis. Sistem ini tidak hanya berfokus pada pencatatan administratif, melainkan berevolusi menjadi sebuah **Command Center** (Ruang Kontrol) bagi pengelola klinik untuk memantau keadaan secara *real-time*.
 
-## 💡 Masalah yang Diselesaikan (Problems Solved)
+## Masalah yang Diselesaikan (Problems Solved)
 Sistem ini hadir untuk memecahkan berbagai masalah klasik yang sering terjadi di klinik konvensional:
 1. **Penumpukan Antrean**: Memiliki fitur *Live Queue Balancing* untuk mengarahkan pasien ke dokter yang sedang kosong secara dinamis.
 2. **Keterlambatan Penanganan Medis**: Memiliki sistem *Early Warning System (EWS)* untuk memberikan peringatan dini terkait okupansi ruangan dan log sistem operasional.
@@ -17,7 +17,7 @@ Sistem ini hadir untuk memecahkan berbagai masalah klasik yang sering terjadi di
 4. **Data Tercecer**: Menggabungkan seluruh manajemen pilar klinik (Dokter, Pasien, Obat, dan Ruang) ke dalam satu pintu basis data yang aman.
 5. **Keamanan Akses**: Sistem otentikasi (Super Admin, Dokter, Pasien) yang terpisah, memastikan privasi dan wewenang pengguna tetap terjaga.
 
-## 🛠️ Teknologi & Framework yang Digunakan
+## Teknologi & Framework yang Digunakan
 Sistem ini dibangun menggunakan arsitektur MVC (Model-View-Controller) modern dengan jajaran teknologi berikut:
 
 ### Backend
