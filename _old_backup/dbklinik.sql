@@ -38,7 +38,9 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`role_id`, `role_name`) VALUES
 (1, 'super_admin'),
 (2, 'pasien'),
-(3, 'dokter');
+(3, 'dokter'),
+(4, 'apoteker'),
+(5, 'resepsionis');
 
 -- --------------------------------------------------------
 
